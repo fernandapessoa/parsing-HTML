@@ -44,10 +44,6 @@ else
    cat index | grep "href" | cut -d "/" -f3 | grep "\." | sed 's/".*//' | grep -v "<l" | sort | uniq > dominios
 
    # Busca dos IPs dos domínios
-   wget -q $1 -O index
-   cat index | grep "href" | cut -d "/" -f3 | grep "\." | sed 's/".*//' | grep -v "<l" | sort | uniq > dominios
-
-   # Busca dos IPs dos domínios
    for dominio in $(cat dominios); do
         host "$dominio" | grep "has address" >> response
    done
